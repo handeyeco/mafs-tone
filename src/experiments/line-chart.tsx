@@ -1,33 +1,10 @@
 import { Mafs, Coordinates, Line, Theme, vec } from "mafs";
 import { useState, useEffect } from "react";
 import * as Tone from "tone";
-
-// min: inclusive
-// max: exclusive
-function getRandomInt(min: number, max: number) {
-  const minCeiled = Math.ceil(min);
-  const maxFloored = Math.floor(max);
-  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
-}
-
-function map(
-  n: number,
-  start1: number,
-  stop1: number,
-  start2: number,
-  stop2: number
-) {
-  return ((n - start1) / (stop1 - start1)) * (stop2 - start2) + start2;
-}
+import { getRandomInt, map, yFromX } from "../helpers/math";
 
 const point1: vec.Vector2 = [getRandomInt(-9, 0), getRandomInt(-9, 0)];
 const point2: vec.Vector2 = [getRandomInt(1, 10), getRandomInt(1, 10)];
-
-function yFromX(x: number) {
-  const gradient = (point2[1] - point1[1]) / (point2[0] - point1[0]);
-  const intercept = point1[1] - gradient * point1[0];
-  return gradient * x + intercept;
-}
 
 const panner = new Tone.Panner().toDestination();
 
@@ -68,7 +45,7 @@ export default function LineChart() {
       try {
         panner.set({ pan: map(playheadPosition, -10, 10, -1, 1) });
 
-        const y = yFromX(playheadPosition);
+        const y = yFromX(playheadPosition, point1, point2);
         const freq = map(y, -10, 10, 200, 1000);
         synth.triggerAttackRelease(freq, 0.05);
 

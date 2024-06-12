@@ -8,12 +8,12 @@ import InteractiveChart from "./experiments/interactive-chart";
 import "./App.css";
 
 const experiments = [
-  // BarChart,
-  // LineChart,
-  // AxisChart,
-  // IntersectionChart,
-  // PlotChart,
-  // SineChart,
+  BarChart,
+  LineChart,
+  AxisChart,
+  IntersectionChart,
+  PlotChart,
+  SineChart,
   InteractiveChart,
 ];
 

@@ -1,42 +1,15 @@
 import { Mafs, Coordinates, Line, Theme, vec, Point } from "mafs";
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
-
-// min: inclusive
-// max: exclusive
-function getRandomInt(min: number, max: number) {
-  const minCeiled = Math.ceil(min);
-  const maxFloored = Math.floor(max);
-  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
-}
-
-function map(
-  n: number,
-  start1: number,
-  stop1: number,
-  start2: number,
-  stop2: number
-) {
-  return ((n - start1) / (stop1 - start1)) * (stop2 - start2) + start2;
-}
+import { getRandomInt, map, yFromX, getXIntercept } from "../helpers/math";
 
 const point1: vec.Vector2 = [getRandomInt(1, 10), getRandomInt(-9, 0)];
 const point2: vec.Vector2 = [getRandomInt(-9, 0), getRandomInt(1, 10)];
 const minX = Math.min(point1[0], point2[0]);
 const maxX = Math.max(point1[0], point2[0]);
 
-function getXIntercept(a: vec.Vector2, b: vec.Vector2) {
-  return a[0] - (a[1] * (b[0] - a[0])) / (b[1] - a[1]);
-}
-
-function yFromX(x: number) {
-  const gradient = (point2[1] - point1[1]) / (point2[0] - point1[0]);
-  const intercept = point1[1] - gradient * point1[0];
-  return gradient * x + intercept;
-}
-
 const xIntercept = getXIntercept(point1, point2);
-const yIntercept = yFromX(0);
+const yIntercept = yFromX(0, point1, point2);
 
 const panner = new Tone.Panner().toDestination();
 
@@ -99,7 +72,7 @@ export default function AxisChart() {
     }
 
     const x = playheadPosition;
-    const y = yFromX(playheadPosition);
+    const y = yFromX(playheadPosition, point1, point2);
 
     if (x > 10) {
       setPlaying(false);

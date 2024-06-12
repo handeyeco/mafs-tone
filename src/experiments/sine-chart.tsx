@@ -1,28 +1,11 @@
 import { Mafs, Coordinates, Line, Theme, Plot } from "mafs";
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
-
-// min: inclusive
-// max: exclusive
-function getRandomInt(min: number, max: number) {
-  const minCeiled = Math.ceil(min);
-  const maxFloored = Math.floor(max);
-  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
-}
+import { getRandomInt, map } from "../helpers/math";
 
 const amplitudeMult = getRandomInt(1, 4);
 const frequencyMult = getRandomInt(1, 4);
 const plotter = (x: number) => Math.sin(x * frequencyMult) * amplitudeMult;
-
-function map(
-  n: number,
-  start1: number,
-  stop1: number,
-  start2: number,
-  stop2: number
-) {
-  return ((n - start1) / (stop1 - start1)) * (stop2 - start2) + start2;
-}
 
 const panner = new Tone.Panner().toDestination();
 

@@ -1,10 +1,7 @@
 import { Mafs, Coordinates, Polygon, Theme } from "mafs";
 import { useEffect, useState } from "react";
 import * as Tone from "tone";
-
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max);
-}
+import { getRandomInt } from "../helpers/math";
 
 const data: number[] = [];
 const notes: string[] = [
@@ -25,7 +22,7 @@ const notes: string[] = [
 ];
 
 for (let i = 0; i < 10; i++) {
-  data[i] = getRandomInt(10);
+  data[i] = getRandomInt(0, 10);
 }
 
 const synth = new Tone.Synth().toDestination();
