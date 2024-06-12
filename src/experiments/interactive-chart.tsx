@@ -68,7 +68,9 @@ export default function InteractiveChart() {
 
     try {
       panner.set({ pan: map(x, -10, 10, -1, 1) });
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+    }
 
     const intersection = intersect(
       ...point1.point,
@@ -86,7 +88,9 @@ export default function InteractiveChart() {
           const y = yFromX(playheadPosition, point1.point, point2.point);
           const freq = map(y, -10, 10, 200, 1000);
           interactiveSynth.triggerAttackRelease(freq, 0.05);
-        } catch (err) {}
+        } catch (err) {
+          console.error(err);
+        }
       }
     }
 
@@ -99,7 +103,9 @@ export default function InteractiveChart() {
           const y = yFromX(playheadPosition, lockedPoint1, lockedPoint2);
           const freq = map(y, -10, 10, 200, 1000);
           lockedSynth.triggerAttackRelease(freq, 0.05);
-        } catch (err) {}
+        } catch (err) {
+          console.error(err);
+        }
       }
     }
 
@@ -111,7 +117,9 @@ export default function InteractiveChart() {
     ) {
       try {
         intersectionSynth.triggerAttackRelease("E5", 0.01);
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     prevPlayheadPosition.current = playheadPosition;

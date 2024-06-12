@@ -89,7 +89,9 @@ export default function IntersectionChart() {
     const x = playheadPosition;
     try {
       panner.set({ pan: map(x, -10, 10, -1, 1) });
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+    }
 
     // handle line 1
     if (
@@ -101,7 +103,9 @@ export default function IntersectionChart() {
         const y = yFromX(playheadPosition, line1Point1, line1Point2);
         const freq = map(y, -10, 10, 200, 1000);
         line1Synth.triggerAttackRelease(freq, 0.05);
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     // handle line 2
@@ -114,7 +118,9 @@ export default function IntersectionChart() {
         const y = yFromX(playheadPosition, line2Point1, line2Point2);
         const freq = map(y, -10, 10, 200, 1000);
         line2Synth.triggerAttackRelease(freq, 0.05);
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     if (
@@ -125,7 +131,9 @@ export default function IntersectionChart() {
     ) {
       try {
         intersectionSynth.triggerAttackRelease("E5", 0.01);
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     prevPlayheadPosition.current = playheadPosition;

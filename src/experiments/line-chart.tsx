@@ -52,7 +52,9 @@ export default function LineChart() {
         if (y < 0) {
           noiseSynth.triggerAttackRelease(0.1);
         }
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     setTimeout(() => {

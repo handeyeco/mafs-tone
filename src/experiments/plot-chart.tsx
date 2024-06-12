@@ -75,13 +75,17 @@ export default function PlotChart() {
 
     try {
       panner.set({ pan: map(x, -10, 10, -1, 1) });
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+    }
 
     if (x > -10 && x < 10 && y > -10 && y < 10) {
       try {
         const freq = map(y, -10, 10, 200, 1000);
         plotSynth.triggerAttackRelease(freq, 0.05);
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     if (axisSound) {
@@ -92,13 +96,17 @@ export default function PlotChart() {
         if ((prevX.current < 0 && x > 0) || (prevX.current > 0 && x < 0)) {
           xSynth.triggerAttackRelease("E5", 0.01);
         }
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     if (negativeSound && y < 0) {
       try {
         noiseSynth.triggerAttackRelease(0.1);
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     prevX.current = x;

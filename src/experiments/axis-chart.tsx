@@ -87,7 +87,9 @@ export default function AxisChart() {
     ) {
       try {
         tickSynth.triggerAttackRelease(150, 1);
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     // handle axis
@@ -95,12 +97,16 @@ export default function AxisChart() {
       if (prevX.current && prevX.current < 0 && x > 0) {
         try {
           axisSynth.triggerAttackRelease("C5", 0.01);
-        } catch (err) {}
+        } catch (err) {
+          console.error(err);
+        }
       }
       if (prevY.current && prevY.current > 0 && y < 0) {
         try {
           axisSynth.triggerAttackRelease("E5", 0.01);
-        } catch (err) {}
+        } catch (err) {
+          console.error(err);
+        }
       }
     }
 
