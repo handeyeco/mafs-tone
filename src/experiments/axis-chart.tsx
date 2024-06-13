@@ -23,6 +23,7 @@ const synth = new Tone.Synth({
     sustain: 1,
     release: 0,
   },
+  volume: -10,
 }).connect(panner);
 
 const tickSynth = new Tone.Synth({

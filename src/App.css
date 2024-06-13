@@ -1,3 +1,41 @@
-label {
+.app-container {
+  max-width: 800px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background: white;
+}
+
+.table-of-contents {
+  margin-left: 2rem;
+}
+
+.experiment-container,
+.text-card {
+  padding: 2rem 0;
+  border-bottom: 2px solid steelblue;
+}
+
+.app-container p {
+  padding: 1rem 0;
+}
+
+.experiment-container label {
   display: block;
+  padding: 0.5rem 0;
+}
+
+.experiment-container button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.experiment-container input[type="range"] {
+  display: block;
+  width: 100%;
+}
+
+.MafsView {
+  margin: 2rem auto;
 }
