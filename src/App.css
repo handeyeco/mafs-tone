@@ -19,18 +19,19 @@ a:active {
   background: white;
 }
 
-.table-of-contents {
-  margin-left: 2rem;
-}
-
 .experiment-container,
 .text-card {
   padding: 2rem 0;
   border-bottom: 1px solid lightgrey;
 }
 
-.app-container p {
+.app-container p,
+.app-container ul {
   padding: 1.25rem 0;
+}
+
+.app-container ul {
+  margin-left: 2rem;
 }
 
 .experiment-container label {

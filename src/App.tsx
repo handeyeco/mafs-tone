@@ -7,6 +7,7 @@ import SineChart from "./experiments/sine-chart";
 import InteractiveChart from "./experiments/interactive-chart";
 import SpeechSynthChart from "./experiments/speech-synth-chart";
 import XYDirectionChart from "./experiments/x-y-direction-chart";
+import SpaceChart from "./experiments/space-chart";
 import "./App.css";
 
 export default function App() {
@@ -39,9 +40,12 @@ export default function App() {
           but I chose setTimeout while prototyping for simplicity.
         </p>
         <h3>Example Index</h3>
-        <ul className="table-of-contents">
+        <ul>
           <li>
             <a href="#simple-example">Simple Example</a>
+          </li>
+          <li>
+            <a href="#understanding-space">Understanding Space</a>
           </li>
           <li>
             <a href="#basic-line-chart">Basic Line Chart</a>
@@ -82,6 +86,52 @@ export default function App() {
           mapped to the C Major scale.
         </p>
         <BarChart />
+      </div>
+      <div className="experiment-container">
+        <h2 id="understanding-space">Understanding Space</h2>
+        <p>
+          Before we go much further, it'd be good to talk about how sound works.
+          Sound is typically played in stereo; laptops, headphones, and music
+          venues work in the stereo realm. That's because, at most, humans have
+          two ears to hear with.
+        </p>
+        <p>
+          However we interpret this stereo signal in terms of three dimensional
+          space: we can tell the difference between someone talking to our face
+          vs a car honking behind us vs the sound of a party down the street. We
+          can also differentiate more subtle differences: we can distinguish a
+          flute playing middle C and a piano playing middle C.
+        </p>
+        <p>
+          A lot goes into making things sound the way they do, but I like to
+          explain the fundamentals in terms of an x/y plane where x is
+          left/right and y is near/far. In this example I use a number of tools
+          to simulate these two axes.
+        </p>
+        <ul>
+          <li>
+            <b>panning:</b> the position of the sound in the stereo field. If
+            the sound is coming more from the left speaker, it sounds like the
+            sound is to my left.
+          </li>
+          <li>
+            <b>frequency:</b> low frequencies travel better than high
+            frequencies, so we interpret sounds with more low frequency as being
+            further away. In the example I use a <i>low-pass filter</i> to
+            remove high frequencies as the sound is pushed backwards.
+          </li>
+          <li>
+            <b>reverb:</b> reverb is the sound as it bounces off of surfaces -
+            think of a long hall with tiled floors. The futher away something
+            is, the more time the sound has to bounce off of things; for that
+            reason we interpret sounds with reverb as being further away.
+          </li>
+          <li>
+            <b>amplitude:</b> we interpret quieter things as being further away,
+            so by controlling volume we can simulate a change in distance.
+          </li>
+        </ul>
+        <SpaceChart />
       </div>
       <div className="experiment-container">
         <h2 id="basic-line-chart">Basic Line Chart</h2>

@@ -78,6 +78,8 @@ export default function LineChart() {
         }}
         width={600}
         height={600}
+        zoom={false}
+        pan={false}
       >
         <Coordinates.Cartesian />
         <Line.Segment point1={point1} point2={point2} color={Theme.blue} />
