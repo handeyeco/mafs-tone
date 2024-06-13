@@ -1,6 +1,10 @@
 html {
   box-sizing: border-box;
   font-size: 10px;
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 *,
@@ -10,17 +14,10 @@ html {
 }
 
 body {
-  font-size: 1.6rem;
-  background: steelblue;
+  font-size: 1.8rem;
 }
 
 body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 p,
 ol,
 ul {

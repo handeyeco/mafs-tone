@@ -1,3 +1,17 @@
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 1rem 0;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: steelblue;
+}
+
 .app-container {
   max-width: 800px;
   margin: 5rem auto;
@@ -12,16 +26,17 @@
 .experiment-container,
 .text-card {
   padding: 2rem 0;
-  border-bottom: 2px solid steelblue;
+  border-bottom: 1px solid lightgrey;
 }
 
 .app-container p {
-  padding: 1rem 0;
+  padding: 1.25rem 0;
 }
 
 .experiment-container label {
   display: block;
   padding: 0.5rem 0;
+  font-weight: 500;
 }
 
 .experiment-container button {

@@ -26,6 +26,16 @@ export default function App() {
           live thanks for Mafs. No audio is pre-recorded, it's all generated
           live thanks to Tone.
         </p>
+        <p>
+          Occassionally things freeze up for a few milliseconds. This is likely
+          due to use setTimeout rather than than something like{" "}
+          <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame">
+            requestAnimationFrame
+          </a>{" "}
+          which would require more work for proper tweening.{" "}
+          requestAnimationFrame would be better for a production application,
+          but I chose setTimeout while prototyping for simplicity.
+        </p>
         <h3>Example Index</h3>
         <ul className="table-of-contents">
           <li>
