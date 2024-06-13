@@ -1,3 +1,5 @@
+import { vec } from "mafs";
+
 export function intersect(
   x1: number,
   y1: number,
@@ -57,6 +59,25 @@ export function yFromX(x: number, point1: vec.Vector2, point2: vec.Vector2) {
   const gradient = (point2[1] - point1[1]) / (point2[0] - point1[0]);
   const intercept = point1[1] - gradient * point1[0];
   return gradient * x + intercept;
+}
+
+// ChatGPT wrote this, I don't know if it's right
+export function xFromY(y: number, point1: vec.Vector2, point2: vec.Vector2) {
+  const [x1, y1] = point1;
+  const [x2, y2] = point2;
+
+  // If the line is vertical, return the x-coordinate of the points
+  if (x1 === x2) {
+    if (y >= Math.min(y1, y2) && y <= Math.max(y1, y2)) {
+      return x1; // The line segment contains the given y-coordinate
+    } else {
+      return NaN; // The line segment does not contain the given y-coordinate
+    }
+  }
+
+  const gradient = (y2 - y1) / (x2 - x1);
+  const intercept = y1 - gradient * x1;
+  return (y - intercept) / gradient;
 }
 
 export function getXIntercept(a: vec.Vector2, b: vec.Vector2) {

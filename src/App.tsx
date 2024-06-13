@@ -5,6 +5,8 @@ import IntersectionChart from "./experiments/intersection-chart";
 import PlotChart from "./experiments/plot-chart";
 import SineChart from "./experiments/sine-chart";
 import InteractiveChart from "./experiments/interactive-chart";
+import SpeechSynthChart from "./experiments/speech-synth-chart";
+import XYDirectionChart from "./experiments/x-y-direction-chart";
 import "./App.css";
 
 export default function App() {
@@ -59,6 +61,12 @@ export default function App() {
           <li>
             <a href="#interactive-line">Interactive Line</a>
           </li>
+          <li>
+            <a href="#x-vs-y-direction">Time: X vs Y Direction</a>
+          </li>
+          <li>
+            <a href="#speech-synthesis">Speech Synthesis</a>
+          </li>
         </ul>
       </div>
       <div className="experiment-container">
@@ -79,9 +87,10 @@ export default function App() {
         <h2 id="basic-line-chart">Basic Line Chart</h2>
         <p>
           In this example we randomly generate an upward line chart. The x-axis
-          is mapped to time and the y-axis is mapped to pitch - lower pitch is a
-          lower number, higher pitch is a higher number. White noise is played
-          when y is a negative number.
+          is mapped to time and reinforced with panning between left and right
+          speakers. The y-axis is mapped to pitch - lower pitch is a lower
+          number, higher pitch is a higher number. White noise is played when y
+          is a negative number.
         </p>
         <p>
           While this might sound like a single note bending upward, it's
@@ -168,6 +177,39 @@ export default function App() {
           that intersection.
         </p>
         <InteractiveChart />
+      </div>
+      <div className="experiment-container">
+        <h2 id="x-vs-y-direction">Time: X vs Y Direction</h2>
+        <p>
+          To this point we've been taking for granted that the x-axis is
+          represented as time and the y-axis is represented as pitch. This is
+          useful for horizontal and diagonal lines, but it doesn't do much for
+          vertical lines.
+        </p>
+        <p>
+          In this example the user has the option: play left-to-right or
+          bottom-to-top.
+        </p>
+        <XYDirectionChart />
+      </div>
+      <div className="experiment-container">
+        <h2 id="speech-synthesis">Speech Synthesis</h2>
+        <p>
+          Modern browsers support the{" "}
+          <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API">
+            Web Speech API
+          </a>{" "}
+          which can be used to generate spoken text. Unfortunately dispatching
+          "utterances" (as they're called) has a significant lag which makes
+          this difficult to use in this kind of time sensitive system. Safari
+          seems to cache generated speech which is useful on subsequent listens,
+          but is still problematic on the initial listen.
+        </p>
+        <p>
+          In this example we pause for speech at the start and end of the line
+          and when the line crosses the x- or y-axis.
+        </p>
+        <SpeechSynthChart />
       </div>
     </div>
   );
