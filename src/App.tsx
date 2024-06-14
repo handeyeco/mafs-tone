@@ -279,7 +279,13 @@ export default function App() {
           "utterances" (as they're called) has a significant lag which makes
           this difficult to use in this kind of time sensitive system. Safari
           seems to cache generated speech which is useful on subsequent listens,
-          but is still problematic on the initial listen.
+          but is still problematic on the initial listen. We can speed things up
+          with pre-recorded audio, but we exchange speed for flexibility and
+          support for{" "}
+          <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition/lang">
+            internationalization
+          </a>{" "}
+          .
         </p>
         <p>
           In this example we pause for speech at the start and end of the line

@@ -8,9 +8,12 @@ const point2: vec.Vector2 = [getRandomInt(5, 10), getRandomInt(5, 10)];
 const minX = Math.min(point1[0], point2[0]);
 const maxX = Math.max(point1[0], point2[0]);
 
-const speechAvailable = "speechSynthesis" in window;
-
 const panner = new Tone.Panner().toDestination();
+
+const startLineBuffer = new Tone.ToneAudioBuffer("./start-line.mp3");
+const endLineBuffer = new Tone.ToneAudioBuffer("./end-line.mp3");
+const xAxisBuffer = new Tone.ToneAudioBuffer("./x-axis.mp3");
+const yAxisBuffer = new Tone.ToneAudioBuffer("./y-axis.mp3");
 
 const synth = new Tone.Synth({
   oscillator: {
@@ -31,6 +34,7 @@ export default function SpeechSynthChart() {
   const [readAxis, setReadAxis] = useState(true);
   const prevX = useRef(-10);
   const prevY = useRef(-10);
+  const [playSynthesized, setPlaySynthesized] = useState(true);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
@@ -58,32 +62,54 @@ export default function SpeechSynthChart() {
     }
 
     let nextFrameDelay = 10;
-    if (speechAvailable) {
-      if (readStartEnd) {
-        if (prevX.current < minX && x >= minX) {
+    if (readStartEnd) {
+      if (prevX.current < minX && x >= minX) {
+        if (playSynthesized) {
           const startLine = new SpeechSynthesisUtterance("Start line");
           window.speechSynthesis.speak(startLine);
           nextFrameDelay = 1500;
-        }
-
-        if (prevX.current < maxX && x >= maxX) {
-          const endLine = new SpeechSynthesisUtterance("End line");
-          window.speechSynthesis.speak(endLine);
-          nextFrameDelay = 1500;
+        } else {
+          const player = new Tone.Player(startLineBuffer).connect(panner);
+          player.start();
+          nextFrameDelay = 500;
         }
       }
 
-      if (readAxis) {
-        if (prevX.current < 0 && x >= 0) {
+      if (prevX.current < maxX && x >= maxX) {
+        if (playSynthesized) {
+          const endLine = new SpeechSynthesisUtterance("End line");
+          window.speechSynthesis.speak(endLine);
+          nextFrameDelay = 1500;
+        } else {
+          const player = new Tone.Player(endLineBuffer).connect(panner);
+          player.start();
+          nextFrameDelay = 500;
+        }
+      }
+    }
+
+    if (readAxis) {
+      if (prevX.current < 0 && x >= 0) {
+        if (playSynthesized) {
           const xAxis = new SpeechSynthesisUtterance("Y axis");
           window.speechSynthesis.speak(xAxis);
           nextFrameDelay = 1500;
+        } else {
+          const player = new Tone.Player(yAxisBuffer).connect(panner);
+          player.start();
+          nextFrameDelay = 500;
         }
+      }
 
-        if (prevY.current < 0 && y >= 0) {
+      if (prevY.current < 0 && y >= 0) {
+        if (playSynthesized) {
           const yAxis = new SpeechSynthesisUtterance("X axis");
           window.speechSynthesis.speak(yAxis);
           nextFrameDelay = 1500;
+        } else {
+          const player = new Tone.Player(xAxisBuffer).connect(panner);
+          player.start();
+          nextFrameDelay = 500;
         }
       }
     }
@@ -144,8 +170,23 @@ export default function SpeechSynthChart() {
             }}
           />
         </label>
-        <button onClick={handlePressPlay} disabled={playing}>
-          Play
+        <button
+          onClick={() => {
+            setPlaySynthesized(true);
+            handlePressPlay();
+          }}
+          disabled={playing}
+        >
+          Play synthesized voice
+        </button>
+        <button
+          onClick={() => {
+            setPlaySynthesized(false);
+            handlePressPlay();
+          }}
+          disabled={playing}
+        >
+          Play prerecorded voice
         </button>
       </div>
     </>
