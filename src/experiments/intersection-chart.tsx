@@ -159,6 +159,8 @@ export default function IntersectionChart() {
         }}
         width={600}
         height={600}
+        zoom={false}
+        pan={false}
       >
         <Coordinates.Cartesian />
         <Line.Segment

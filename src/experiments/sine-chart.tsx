@@ -133,6 +133,8 @@ export default function SineChart() {
         }}
         width={600}
         height={600}
+        zoom={false}
+        pan={false}
       >
         <Coordinates.Cartesian />
         <Plot.OfX y={plotter} color={Theme.blue} />

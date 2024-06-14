@@ -82,7 +82,8 @@ export default function App() {
         <p>
           <b>
             There source for all of these examples can be found on{" "}
-            <a href="https://github.com/handeyeco/mafs-tone">this repo</a>.
+            <a href="https://github.com/handeyeco/mafs-tone">this repository</a>
+            .
           </b>
         </p>
       </div>

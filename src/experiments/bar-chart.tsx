@@ -74,6 +74,8 @@ export default function BarChart() {
         }}
         width={600}
         height={600}
+        zoom={false}
+        pan={false}
       >
         <Coordinates.Cartesian />
         {data.map((val, i) => {
