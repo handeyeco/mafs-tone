@@ -40,8 +40,11 @@ export default function App() {
           requestAnimationFrame would be better for a production application,
           but I chose setTimeout while prototyping for simplicity.
         </p>
-        <h3>Example Index</h3>
+        <h3>Table of Contents</h3>
         <ul>
+          <li>
+            <a href="#market-research">Market Research</a>
+          </li>
           <li>
             <a href="#simple-example">Simple Example</a>
           </li>
@@ -77,9 +80,92 @@ export default function App() {
           </li>
         </ul>
         <p>
-          There source for all of these examples can be found on{" "}
-          <a href="https://github.com/handeyeco/mafs-tone">this repo</a>.
+          <b>
+            There source for all of these examples can be found on{" "}
+            <a href="https://github.com/handeyeco/mafs-tone">this repo</a>.
+          </b>
         </p>
+      </div>
+
+      <div className="text-card">
+        <h2 id="market-research">Market Research</h2>
+        <p>
+          I'm not going into detail about <i>what</i> data sonicification is,
+          this document is a more a set of open-source examples about combining
+          Mafs with Tone. However I'll share the resources I've found along with
+          some apps that are already doing dynamic sonification on the web right
+          now.
+        </p>
+        <ul>
+          <li>
+            <a href="https://mlaetsc.hcommons.org/2023/01/18/data-sonification-for-beginners/">
+              Data Sonification for Beginners
+            </a>
+            : a great overview with some non-code solutions for sonification.
+          </li>
+          <li>
+            <a href="https://github.com/highcharts/sonification-studio">
+              Highcharts Sonification Studio
+            </a>
+            : an open-source collaboration between the Georgia Institute of
+            Technology and Highcharts
+          </li>
+          <li>
+            <a href="https://github.com/highcharts/highcharts/tree/master/ts/Extensions/Sonification">
+              Highcharts Sonification code
+            </a>
+            : the code that drives Highcharts' sonification extension is also
+            open-source (different than Highcharts Sonification Studio)
+          </li>
+          <li>
+            <a href="https://github.com/sonifydata/twotone">TwoTone</a>: an
+            open-source data sonification and data-driven music web app
+          </li>
+          <li>
+            <a href="https://www.desmos.com/calculator">Desmos Calculator</a>: I
+            don't think it's open-source, but it's a wonderful example of
+            complex applications of sonification in the web.
+          </li>
+          <li>
+            <a href="https://www.perkins.org/resource/sonification-sounds-meaning-activity/">
+              Sonification: Sounds with Meaning Activity
+            </a>
+            : great article on sonification by the Perkins School for the
+            Blind...without visuals. Great way to build empathy for learners
+            with limited or no visibility.
+          </li>
+          <li>
+            <a href="https://sonification.de/handbook/">
+              The Sonification Handbook
+            </a>
+            : an OpenAccess book on sonification
+          </li>
+        </ul>
+        <p>Some random cool things:</p>
+        <ul>
+          <li>
+            <a href="https://www.nasa.gov/universe/data-sonification-a-new-cosmic-triad-of-sound/">
+              Data Sonification: A New Cosmic Triad of Sound
+            </a>
+            : sonifying images of space
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=3PJxUPvz9Oo">
+              Sonification of Tohoku Earthquake
+            </a>
+            : sonifying an earthquake
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=kEIi45KPlFQ">
+              MusLib Gate Count FY18 by Shift
+            </a>
+            : sonifying library visits
+          </li>
+          <li>
+            <a href="https://datadrivendj.com/">Data-Driven DJ</a>: a series of
+            music experiments that combine data, algorithms, and borrowed sounds
+          </li>
+        </ul>
       </div>
       <div className="experiment-container">
         <h2 id="simple-example">Simple Example</h2>
