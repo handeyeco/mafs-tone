@@ -8,6 +8,7 @@ import InteractiveChart from "./experiments/interactive-chart";
 import SpeechSynthChart from "./experiments/speech-synth-chart";
 import XYDirectionChart from "./experiments/x-y-direction-chart";
 import SpaceChart from "./experiments/space-chart";
+import PointsChart from "./experiments/points-chart";
 import "./App.css";
 
 export default function App() {
@@ -66,12 +67,19 @@ export default function App() {
             <a href="#interactive-line">Interactive Line</a>
           </li>
           <li>
+            <a href="#arbitrary-points">Arbitrary Points</a>
+          </li>
+          <li>
             <a href="#x-vs-y-direction">Time: X vs Y Direction</a>
           </li>
           <li>
             <a href="#speech-synthesis">Speech Synthesis</a>
           </li>
         </ul>
+        <p>
+          There source for all of these examples can be found on{" "}
+          <a href="https://github.com/handeyeco/mafs-tone">this repo</a>.
+        </p>
       </div>
       <div className="experiment-container">
         <h2 id="simple-example">Simple Example</h2>
@@ -227,6 +235,24 @@ export default function App() {
           that intersection.
         </p>
         <InteractiveChart />
+      </div>
+      <div className="experiment-container">
+        <h2 id="arbitrary-points">Arbitrary Points</h2>
+        <p>
+          So far, we've been dealing with a fixed number of elements on a chart.
+          That works well for most of our use cases, but there are situations
+          where we don't know in advance what elements we'll need.
+        </p>
+        <p>
+          In this example there's a button that lets us add additional points to
+          an existing chart. In order to handle this smoothly, we let each point
+          handle its own sound: when we cross the point we tell it to play and
+          the Point component itself spins up a Tone synth and triggers a note
+          with a frequency based on its current y value. Each point connects to
+          a shared panner to reinforce the x value, but likely in a production
+          setting each point would manage its own panner too.
+        </p>
+        <PointsChart />
       </div>
       <div className="experiment-container">
         <h2 id="x-vs-y-direction">Time: X vs Y Direction</h2>

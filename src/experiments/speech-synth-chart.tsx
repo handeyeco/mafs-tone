@@ -75,13 +75,13 @@ export default function SpeechSynthChart() {
 
       if (readAxis) {
         if (prevX.current < 0 && x >= 0) {
-          const xAxis = new SpeechSynthesisUtterance("X axis");
+          const xAxis = new SpeechSynthesisUtterance("Y axis");
           window.speechSynthesis.speak(xAxis);
           nextFrameDelay = 1500;
         }
 
         if (prevY.current < 0 && y >= 0) {
-          const yAxis = new SpeechSynthesisUtterance("Y axis");
+          const yAxis = new SpeechSynthesisUtterance("X axis");
           window.speechSynthesis.speak(yAxis);
           nextFrameDelay = 1500;
         }
