@@ -14,7 +14,7 @@ a:active {
 
 .app-container {
   max-width: 800px;
-  margin: 5rem auto;
+  margin: 5rem auto 20rem;
   padding: 2rem;
   background: white;
 }
@@ -26,11 +26,13 @@ a:active {
 }
 
 .app-container p,
-.app-container ul {
+.app-container ul,
+.app-container ol {
   padding: 1.25rem 0;
 }
 
-.app-container ul {
+.app-container ul,
+.app-container ol {
   margin-left: 2rem;
 }
 

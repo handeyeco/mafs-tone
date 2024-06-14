@@ -1,12 +1,10 @@
-import { Mafs, Coordinates, Line, Theme, vec } from "mafs";
+import { Mafs, Coordinates, Line, Theme, vec, useMovablePoint } from "mafs";
 import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
 import { getRandomInt, map, yFromX } from "../helpers/math";
 
-const point1: vec.Vector2 = [getRandomInt(-9, -5), getRandomInt(-9, -5)];
-const point2: vec.Vector2 = [getRandomInt(5, 10), getRandomInt(5, 10)];
-const minX = Math.min(point1[0], point2[0]);
-const maxX = Math.max(point1[0], point2[0]);
+const randPoint1: vec.Vector2 = [getRandomInt(-9, 0), getRandomInt(-9, 0)];
+const randPoint2: vec.Vector2 = [getRandomInt(1, 10), getRandomInt(1, 10)];
 
 const panner = new Tone.Panner().toDestination();
 
@@ -29,6 +27,8 @@ const synth = new Tone.Synth({
 }).connect(panner);
 
 export default function SpeechSynthChart() {
+  const point1 = useMovablePoint(randPoint1);
+  const point2 = useMovablePoint(randPoint2);
   const [playheadPosition, setPlayheadPosition] = useState(-10);
   const [readStartEnd, setReadStartEnd] = useState(true);
   const [readAxis, setReadAxis] = useState(true);
@@ -43,7 +43,7 @@ export default function SpeechSynthChart() {
     }
 
     const x = playheadPosition;
-    const y = yFromX(x, point1, point2);
+    const y = yFromX(x, point1.point, point2.point);
 
     if (x > 10) {
       setPlaying(false);
@@ -52,7 +52,7 @@ export default function SpeechSynthChart() {
 
     panner.set({ pan: map(x, -10, 10, -1, 1) });
 
-    if (x > point1[0] && x < point2[0]) {
+    if (x > point1.x && x < point2.x) {
       try {
         const freq = map(y, -10, 10, 200, 1000);
         synth.triggerAttackRelease(freq, 0.05);
@@ -63,6 +63,9 @@ export default function SpeechSynthChart() {
 
     let nextFrameDelay = 10;
     if (readStartEnd) {
+      const minX = Math.min(point1.x, point2.x);
+      const maxX = Math.max(point1.x, point2.x);
+
       if (prevX.current < minX && x >= minX) {
         if (playSynthesized) {
           const startLine = new SpeechSynthesisUtterance("Start line");
@@ -142,7 +145,15 @@ export default function SpeechSynthChart() {
         pan={false}
       >
         <Coordinates.Cartesian />
-        <Line.Segment point1={point1} point2={point2} color={Theme.blue} />
+        <Line.Segment
+          point1={point1.point}
+          point2={point2.point}
+          color={Theme.blue}
+        />
+
+        {point1.element}
+        {point2.element}
+
         {playing && (
           <Line.Segment
             point1={[playheadPosition, -10]}

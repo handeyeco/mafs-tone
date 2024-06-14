@@ -78,6 +78,9 @@ export default function App() {
           <li>
             <a href="#speech-synthesis">Speech Synthesis</a>
           </li>
+          <li>
+            <a href="#conclusion">Conclusion</a>
+          </li>
         </ul>
         <p>
           <b>
@@ -379,6 +382,50 @@ export default function App() {
           and when the line crosses the x- or y-axis.
         </p>
         <SpeechSynthChart />
+      </div>
+
+      <div className="text-card">
+        <h2 id="conclusion">Conclusion</h2>
+        <p>
+          For the most part, this is all pretty straight-forward to implement.
+          The bulk of the code in each file is handling play state (which could
+          be abstracted into a hook) and doing sound design in Tone (which could
+          could be abstracted into generators). There was also some complexity
+          in meshing the declarative nature of React and Mafs with the
+          imperative style of Tone - which is similar to how the Web Audio API
+          itself works.
+        </p>
+        <p>As mentioned, I see two opportunities for improvement:</p>
+        <ol>
+          <li>
+            Replacing setTimeout with something like requestAnimationFrame.
+            setTimeout puts the callback on the queue, so the <i>soonest</i> the
+            next frame will play is the given timeout. With
+            requestAnimationFrame we could run the callback much more frequently
+            and "tween" between frames.
+          </li>
+          <li>
+            When playing lines, rather than playing a short note each frame we
+            could play one long note for the full duration of the line and
+            modulate the pitch of the note as the line moves through y-axis.
+            This would require some extra math, but would hopefully be less
+            resource intensive.
+          </li>
+        </ol>
+        <p>
+          Both Mafs (
+          <a href="https://bundlephobia.com/package/mafs@0.18.8">93.9kB</a>) and
+          Tone (
+          <a href="https://bundlephobia.com/package/tone@15.0.4">78.4kB</a>) are
+          optional: charts could be done with SVG and audio could be done with
+          the Web Audio API. However I think they both pull their weight: Mafs
+          makes charting a breeze and Tone's built-in instruments abstract away
+          most of the low-level audio programming.
+        </p>
+        <p>
+          I don't know who actually got this far, but thanks for reading! Hope
+          it helps!
+        </p>
       </div>
     </div>
   );
