@@ -21,18 +21,21 @@ export default function App() {
           These are some hackathon-style prototypes done in a couple of days as
           an example of how to combine <a href="https://mafs.dev/">Mafs</a> (the
           charting library) and <a href="https://tonejs.github.io/">Tone</a>{" "}
-          (the audio library).
+          (the audio library) in order to{" "}
+          <a href="https://en.wikipedia.org/wiki/Sonification">sonify</a>{" "}
+          charts.
         </p>
         <p>
-          The data for most of the charts are randomly generated. Most examples
-          have settings to adjust the audio and all of them have a play button
-          to trigger playback. No charts are pre-rendered, they're generated
-          live thanks for Mafs. No audio is pre-recorded, it's all generated
-          live thanks to Tone.
+          The data for most of the charts are randomly generated when the page
+          loads. Most examples have options to adjust aspects of the generated
+          audio and all of them have a play button to trigger playback. No
+          charts are pre-rendered, they're generated live thanks to Mafs;
+          similarly no audio is pre-recorded, it's all generated live thanks to
+          Tone.
         </p>
         <p>
           Occassionally things freeze up for a few milliseconds. This is likely
-          due to use setTimeout rather than than something like{" "}
+          due to using setTimeout rather than than something like{" "}
           <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame">
             requestAnimationFrame
           </a>{" "}
@@ -84,7 +87,7 @@ export default function App() {
         </ul>
         <p>
           <b>
-            There source for all of these examples can be found on{" "}
+            The source for these examples can be found in{" "}
             <a href="https://github.com/handeyeco/mafs-tone">this repository</a>
             .
           </b>
@@ -95,10 +98,9 @@ export default function App() {
         <h2 id="market-research">Market Research</h2>
         <p>
           I'm not going into detail about <i>what</i> data sonicification is,
-          this document is a more a set of open-source examples about combining
-          Mafs with Tone. However I'll share the resources I've found along with
-          some apps that are already doing dynamic sonification on the web right
-          now.
+          this document is a set of open-source <i>examples</i> about combining
+          Mafs with Tone. However I'll share the resources and applications that
+          influenced these experiments.
         </p>
         <ul>
           <li>
@@ -128,7 +130,7 @@ export default function App() {
           <li>
             <a href="https://www.desmos.com/calculator">Desmos Calculator</a>: I
             don't think it's open-source, but it's a wonderful example of
-            complex applications of sonification in the web.
+            dynamic charts with sonification
           </li>
           <li>
             <a href="https://www.perkins.org/resource/sonification-sounds-meaning-activity/">
@@ -136,7 +138,7 @@ export default function App() {
             </a>
             : great article on sonification by the Perkins School for the
             Blind...without visuals. Great way to build empathy for learners
-            with limited or no visibility.
+            with limited or no visibility
           </li>
           <li>
             <a href="https://sonification.de/handbook/">
@@ -173,10 +175,7 @@ export default function App() {
       </div>
       <div className="experiment-container">
         <h2 id="simple-example">Simple Example</h2>
-        <p>
-          This was my starting point since I imagined that working with discrete
-          steps would be easier.
-        </p>
+        <p>My MVP for combining Mafs with Tone.</p>
         <p>
           The chart is made up of a set of Polygon elements positioned to look
           like a basic bar chart. A speed setting controls the interval timeout
@@ -188,8 +187,8 @@ export default function App() {
       <div className="experiment-container">
         <h2 id="understanding-space">Understanding Space</h2>
         <p>
-          Before we go much further, it'd be good to talk about how sound works.
-          Sound is typically played in stereo; laptops, headphones, and music
+          Before we go much further, we should talk about how sound works. Sound
+          is typically played in stereo; laptops, headphones, and most music
           venues work in the stereo realm. That's because, at most, humans have
           two ears to hear with.
         </p>
@@ -249,22 +248,23 @@ export default function App() {
           <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/linearRampToValueAtTime">
             linearRampToValueAtTime
           </a>
-          ; I just didn't want to try to figure out the math for that.
+          ; I just didn't want to try to figure out the math for that while
+          prototyping.
         </p>
         <LineChart />
       </div>
       <div className="experiment-container">
         <h2 id="hearing-axes">Hearing Axes</h2>
         <p>
-          In the previous example, we highlighted the need for context in
-          regards to negative vs positive numbers. In this example we add
-          additional context: a background beat for when the playhead crosses a
-          tick on the x-axis and two notes for when the line crosses the x-axis
-          (C5) or the y-axis (E5).
+          In the previous example, we added context around negative vs positive
+          numbers by adding white noise. In this example we add additional
+          context: a background beat for when the playhead crosses a tick on the
+          x-axis and short notes for when the line crosses the x-axis (C5) or
+          the y-axis (E5).
         </p>
         <p>
           This example can sound overwhelming with everything turned on,
-          hopefully showcasing the need to an interactive UI that allows users
+          hopefully showcasing the need for an interactive UI that allows users
           to selectively enable/disable individual audio elements.
         </p>
         <AxisChart />
@@ -277,10 +277,11 @@ export default function App() {
         </p>
         <p>
           In order to allow users to differentiate between the two lines, each
-          line has a unique timbre due to using different oscillator waveforms.
-          To allow a user to focus on the individual lines, there are three play
-          buttons: two buttons to play the individual lines and one button to
-          play both lines simultaneously.
+          line was given a unique{" "}
+          <a href="https://en.wikipedia.org/wiki/Timbre">timbre</a> by using
+          different oscillator waveforms. To allow a user to focus on the
+          individual lines, there are three play buttons: two buttons to play
+          the individual lines and one button to play both lines simultaneously.
         </p>
         <IntersectionChart />
       </div>
@@ -288,7 +289,7 @@ export default function App() {
         <h2 id="parabola">Parabola</h2>
         <p>
           Because we're using discrete steps to sonify the lines, it's
-          essentially the same steps to convert more complex waveforms; for
+          essentially the same code to convert more complex waveforms; for
           example a randomly generated parabola.
         </p>
         <p>
@@ -309,7 +310,7 @@ export default function App() {
       <div className="experiment-container">
         <h2 id="interactive-line">Interactive Line</h2>
         <p>
-          Since the chart and the sound are generated live, there's really no
+          Since the chart and the audio is generated live, there's really no
           difference between generating sound for an interactive element vs a
           static element.
         </p>
@@ -336,7 +337,7 @@ export default function App() {
         <p>
           In this example there's a button that lets us add additional points to
           an existing chart. In order to handle this smoothly, we let each point
-          handle its own sound: when we cross the point we tell it to play and
+          handle its own sound: when we cross a point we tell the it to play and
           the Point component itself spins up a Tone synth and triggers a note
           with a frequency based on its current y value. Each point connects to
           a shared panner to reinforce the x value, but likely in a production
@@ -366,15 +367,15 @@ export default function App() {
             Web Speech API
           </a>{" "}
           which can be used to generate spoken text. Unfortunately dispatching
-          "utterances" (as they're called) has a significant lag which makes
-          this difficult to use in this kind of time sensitive system. Safari
+          "utterances" (as they're called) has a significant lag which makes the
+          API difficult to use in this kind of time sensitive system. Safari
           seems to cache generated speech which is useful on subsequent listens,
           but is still problematic on the initial listen. We can speed things up
           with pre-recorded audio, but we exchange speed for flexibility and
           support for{" "}
           <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition/lang">
             internationalization
-          </a>{" "}
+          </a>
           .
         </p>
         <p>
@@ -392,8 +393,8 @@ export default function App() {
           be abstracted into a hook) and doing sound design in Tone (which could
           could be abstracted into generators). There was also some complexity
           in meshing the declarative nature of React and Mafs with the
-          imperative style of Tone - which is similar to how the Web Audio API
-          itself works.
+          imperative style of Tone - which the Web Audio API itself is also very
+          imperative.
         </p>
         <p>As mentioned, I see two opportunities for improvement:</p>
         <ol>
